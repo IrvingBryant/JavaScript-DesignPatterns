@@ -29,12 +29,12 @@ let timeChunk = function (ary, fn, count) {
 }
 
 var ary = [];
-for (let i = 0; i <= 160; i++) {
+for (let i = 0; i <= 1000; i++) {
   ary.push(i)
 }
 var renderFriendList = timeChunk(ary, function (n) {
   let div = document.createElement('div');
   div.innerHTML = n;
   document.body.appendChild(div)
-}, 80)
+}, 8)
 renderFriendList();
