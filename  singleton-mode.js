@@ -34,3 +34,37 @@ let ProxySingletonCreateDiv = (function () {
   }
 })()
 //单例代理类end
+
+//惰性单例start
+Singleton.getInstance = (function(){
+  let instance = null
+  return function(name){
+    if(!instance){
+      instance = new Singleton(name)
+    }
+    return instance
+  }
+})()
+//惰性单例end
+
+//通用惰性单例 start
+/**
+ * 
+ * @param {*} fn 
+ */
+var getSingle =  function(fn){
+  let result;
+  return function(){
+    return result || (result = fn.apply(this,arguments))
+  }
+}
+//创建登录框
+
+var createLoginLayer = function (){
+  var div = document.createElement('div')
+  div.innerHTML = '登录窗'
+  div.style.display= 'none'
+  document.body.appendChild(div)
+  return div 
+}
+var createSingleLoginLayer = getSingle(createLoginLayer)
